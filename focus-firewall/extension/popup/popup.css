@@ -1,0 +1,268 @@
+/* =============================================
+   Focus Firewall — Popup Styles
+   ============================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 320px;
+  min-height: 280px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0c0c14;
+  color: #f0f0f5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+}
+
+/* ——— Header ——— */
+.popup-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.popup-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.popup-title {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #6C63FF, #FF6584);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ——— Body ——— */
+.popup-body {
+  padding: 16px 20px;
+  flex: 1;
+}
+
+/* ——— Streak Card ——— */
+.popup-streak-card {
+  padding: 16px;
+  background: rgba(108, 99, 255, 0.06);
+  border: 1px solid rgba(108, 99, 255, 0.12);
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+.popup-streak-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.popup-streak-emoji {
+  font-size: 1.2rem;
+}
+
+.popup-streak-num {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #6C63FF, #FF6584);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.popup-streak-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #8b8ba3;
+}
+
+.popup-streak-bar-bg {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.popup-streak-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #6C63FF, #FF6584);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+/* ——— Status ——— */
+.popup-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.popup-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #55556a;
+  transition: all 0.3s;
+}
+
+.popup-status-dot.active {
+  background: #4ECDC4;
+  box-shadow: 0 0 8px rgba(78,205,196,0.6);
+}
+
+.popup-status-text {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #8b8ba3;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ——— Quick Add Task ——— */
+.popup-task-add {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.popup-task-input {
+  flex: 1;
+  padding: 9px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  color: #f0f0f5;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.popup-task-input::placeholder {
+  color: #55556a;
+}
+
+.popup-task-input:focus {
+  border-color: #6C63FF;
+  background: rgba(108,99,255,0.06);
+}
+
+.popup-btn-add {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6C63FF, #FF6584);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.popup-btn-add:hover {
+  box-shadow: 0 2px 12px rgba(108,99,255,0.4);
+}
+
+.popup-task-count {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #55556a;
+  text-align: center;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ——— Buttons ——— */
+.popup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.popup-btn:active {
+  transform: scale(0.98);
+}
+
+.popup-btn-primary {
+  background: linear-gradient(135deg, #6C63FF, #FF6584);
+  color: #fff;
+  box-shadow: 0 3px 16px rgba(108,99,255,0.3);
+}
+
+.popup-btn-primary:hover {
+  box-shadow: 0 4px 20px rgba(108,99,255,0.45);
+}
+
+.popup-btn-secondary {
+  background: rgba(255,101,132,0.12);
+  color: #FF6584;
+  border: 1px solid rgba(255,101,132,0.2);
+}
+
+.popup-btn-secondary:hover {
+  background: rgba(255,101,132,0.2);
+}
+
+.popup-btn-ghost {
+  background: rgba(255,255,255,0.04);
+  color: #8b8ba3;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.popup-btn-ghost:hover {
+  background: rgba(255,255,255,0.08);
+  color: #f0f0f5;
+}
+
+/* ——— Footer ——— */
+.popup-footer {
+  padding: 10px 20px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  text-align: center;
+}
+
+.popup-footer p {
+  font-size: 0.65rem;
+  color: #444460;
+  letter-spacing: 0.04em;
+}
+

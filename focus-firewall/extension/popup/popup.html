@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Firewall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <div class="popup-logo">
+        <svg viewBox="0 0 32 32" fill="none" width="28" height="28">
+          <path d="M16 2L4 8v8c0 7.73 5.12 14.96 12 16 6.88-1.04 12-8.27 12-16V8L16 2z" 
+                fill="url(#pg)" opacity="0.9"/>
+          <path d="M14.5 17.5l-3-3 1.41-1.41L14.5 14.67l4.59-4.59L20.5 11.5l-6 6z" fill="#fff"/>
+          <defs>
+            <linearGradient id="pg" x1="4" y1="2" x2="28" y2="26">
+              <stop stop-color="#6C63FF"/><stop offset="1" stop-color="#FF6584"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="popup-title">Focus Firewall</span>
+      </div>
+    </header>
+
+    <div class="popup-body">
+      <!-- Streak -->
+      <div class="popup-streak-card">
+        <div class="popup-streak-row">
+          <span class="popup-streak-emoji">🔥</span>
+          <span class="popup-streak-num" id="popupStreak">0</span>
+          <span class="popup-streak-label">day streak</span>
+        </div>
+        <div class="popup-streak-bar-bg">
+          <div class="popup-streak-bar" id="popupStreakBar"></div>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="popup-status" id="popupStatus">
+        <span class="popup-status-dot" id="popupStatusDot"></span>
+        <span class="popup-status-text" id="popupStatusText">Not studying</span>
+      </div>
+
+      <!-- Quick Add Task -->
+      <div class="popup-task-add">
+        <input type="text" class="popup-task-input" id="popupTaskInput" placeholder="Quick add a task..." maxlength="150">
+        <button class="popup-btn-add" id="popupAddTaskBtn" title="Add task">+</button>
+      </div>
+      <div class="popup-task-count" id="popupTaskCount">0 pending tasks</div>
+
+      <!-- Quick Actions -->
+      <div class="popup-actions">
+        <button class="popup-btn popup-btn-primary" id="popupStartBtn">
+          ▶ Start Session
+        </button>
+        <button class="popup-btn popup-btn-secondary" id="popupStopBtn" style="display:none;">
+          ⏹ End Session
+        </button>
+        <button class="popup-btn popup-btn-ghost" id="popupDashboardBtn">
+          📊 Open Dashboard
+        </button>
+      </div>
+    </div>
+
+    <footer class="popup-footer">
+      <p>Stay focused. Build streaks.</p>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

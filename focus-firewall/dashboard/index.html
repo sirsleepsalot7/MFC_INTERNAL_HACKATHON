@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Focus Firewall — Stay focused, build streaks, crush distractions.">
+  <title>Focus Firewall — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Animated background particles -->
+  <div class="bg-particles" id="bgParticles"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header" id="appHeader">
+      <div class="logo-group">
+        <div class="logo-icon" id="logoIcon">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L4 8v8c0 7.73 5.12 14.96 12 16 6.88-1.04 12-8.27 12-16V8L16 2z" 
+                  fill="url(#shield-grad)" opacity="0.9"/>
+            <path d="M16 6l-8 4v6c0 5.64 3.41 10.88 8 12 4.59-1.12 8-6.36 8-12v-6L16 6z" 
+                  fill="url(#shield-inner)" opacity="0.6"/>
+            <path d="M14.5 17.5l-3-3 1.41-1.41L14.5 14.67l4.59-4.59L20.5 11.5l-6 6z" 
+                  fill="#ffffff"/>
+            <defs>
+              <linearGradient id="shield-grad" x1="4" y1="2" x2="28" y2="26">
+                <stop stop-color="#6C63FF"/>
+                <stop offset="1" stop-color="#FF6584"/>
+              </linearGradient>
+              <linearGradient id="shield-inner" x1="8" y1="6" x2="24" y2="24">
+                <stop stop-color="#6C63FF"/>
+                <stop offset="1" stop-color="#4ECDC4"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1 class="logo-text">Focus Firewall</h1>
+      </div>
+      <div class="header-status" id="headerStatus">
+        <span class="status-dot" id="statusDot"></span>
+        <span class="status-text" id="statusText">Idle</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-grid">
+      <!-- Streak Card -->
+      <section class="card streak-card" id="streakCard">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="card-label">Study Streak</span>
+          <span class="streak-badge" id="streakBadge">🔥</span>
+        </div>
+        <div class="streak-display">
+          <span class="streak-number" id="streakNumber">0</span>
+          <span class="streak-unit">days</span>
+        </div>
+        <div class="streak-bar-container">
+          <div class="streak-bar" id="streakBar"></div>
+          <span class="streak-goal" id="streakGoal">Goal: 7 days</span>
+        </div>
+        <p class="streak-subtitle" id="streakSubtitle">Start your first session to begin a streak!</p>
+      </section>
+
+      <!-- Session Card -->
+      <section class="card session-card" id="sessionCard">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="card-label">Study Session</span>
+          <span class="session-icon" id="sessionIcon">📚</span>
+        </div>
+        <div class="timer-display" id="timerDisplay">
+          <span class="timer-minutes" id="timerMinutes">00</span>
+          <span class="timer-sep">:</span>
+          <span class="timer-seconds" id="timerSeconds">00</span>
+        </div>
+        <div class="session-controls">
+          <button class="btn btn-primary" id="btnStartSession">
+            <span class="btn-icon">▶</span>
+            <span class="btn-text">Start Session</span>
+          </button>
+          <button class="btn btn-secondary" id="btnEndSession" style="display:none;">
+            <span class="btn-icon">⏹</span>
+            <span class="btn-text">End Session</span>
+          </button>
+        </div>
+        <div class="session-info">
+          <div class="info-item">
+            <span class="info-label">Today</span>
+            <span class="info-value" id="todayMinutes">0 min</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Total</span>
+            <span class="info-value" id="totalMinutes">0 min</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Insight Card -->
+      <section class="card insight-card" id="insightCard">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="card-label">AI Insight</span>
+          <span class="insight-sparkle">✨</span>
+        </div>
+        <blockquote class="insight-quote" id="insightQuote">
+          <p id="insightText">Loading your personalized insight...</p>
+        </blockquote>
+        <div class="insight-meta">
+          <span class="insight-tag" id="insightTag">motivational</span>
+          <button class="btn-refresh" id="btnRefreshInsight" title="Get new insight">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 4v6h-6M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Tasks Card -->
+      <section class="card tasks-card" id="tasksCard">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="card-label">Assignments & Tasks</span>
+          <span class="tasks-icon">📋</span>
+        </div>
+        <div class="task-input-row">
+          <input type="text" class="task-input" id="taskInput" placeholder="Add a new task or assignment..." maxlength="200">
+          <select class="task-priority-select" id="taskPriority">
+            <option value="high">🔴 High</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="low">🟢 Low</option>
+          </select>
+          <input type="date" class="task-deadline-input" id="taskDeadline">
+          <button class="btn btn-primary btn-add-task" id="btnAddTask">
+            <span class="btn-text">+ Add</span>
+          </button>
+        </div>
+        <div class="task-filters" id="taskFilters">
+          <button class="task-filter active" data-filter="all">All</button>
+          <button class="task-filter" data-filter="pending">Pending</button>
+          <button class="task-filter" data-filter="done">Done</button>
+        </div>
+        <div class="task-list" id="taskList">
+          <p class="task-empty" id="taskEmpty">No tasks yet. Add your first assignment above!</p>
+        </div>
+        <div class="task-summary" id="taskSummary">
+          <span class="task-count" id="taskPendingCount">0 pending</span>
+          <span class="task-sep">·</span>
+          <span class="task-count" id="taskDoneCount">0 done</span>
+        </div>
+      </section>
+
+      <!-- Stats Card -->
+      <section class="card stats-card" id="statsCard">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="card-label">Weekly Overview</span>
+          <span class="stats-icon">📊</span>
+        </div>
+        <div class="week-chart" id="weekChart"></div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-value" id="statBestStreak">0</span>
+            <span class="stat-label">Best Streak</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="statSessions">0</span>
+            <span class="stat-label">Sessions</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="statHours">0h</span>
+            <span class="stat-label">Total Hours</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Focus Firewall &middot; Stay focused. Build streaks. Crush distractions.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

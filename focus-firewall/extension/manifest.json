@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Firewall",
+  "description": "Block distracting sites and protect your study streak.",
+  "version": "1.0.0",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "icons": {
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://*.instagram.com/*",
+        "*://*.twitter.com/*",
+        "*://*.x.com/*",
+        "*://*.reddit.com/*",
+        "*://*.tiktok.com/*",
+        "*://*.facebook.com/*",
+        "*://*.netflix.com/*",
+        "*://*.hotstar.com/*",
+        "*://*.primevideo.com/*",
+        "*://*.disneyplus.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["dashboard/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
