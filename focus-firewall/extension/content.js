@@ -239,7 +239,7 @@
     const rethinkPanel = document.getElementById('ff-rethink-panel');
 
     if (mainPanel) mainPanel.style.display = 'none';
-    if (rethinkPanel) rethinkPanel.style.display = 'block';
+    if (rethinkPanel) rethinkPanel.style.display = 'flex';
 
     // Load tasks
     loadAndRenderTasks();

@@ -88,6 +88,9 @@
   z-index: 1 !important;
   max-width: 600px !important;
   width: 92% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center !important;
   padding: 52px 44px !important;
   background: rgba(18, 18, 28, 0.85) !important;
@@ -164,42 +167,121 @@
   font-size: 1.3rem !important;
   line-height: 1.75 !important;
   color: #c4c4da !important;
-  margin-bottom: 36px !important;
+  margin-bottom: 8px !important;
   font-weight: 500 !important;
 }
 
 /* ——— Streak Display ——— */
 .ff-streak-display {
   display: flex !important;
-  align-items: baseline !important;
+  flex-direction: column !important;
+  align-items: center !important;
   justify-content: center !important;
-  gap: 10px !important;
-  margin-bottom: 36px !important;
-  padding: 18px 28px !important;
-  background: rgba(108, 99, 255, 0.08) !important;
+  gap: 6px !important;
+  width: 60% !important;
+  margin-top: 20px !important;
+  margin-bottom: 0 !important;
+  padding: 18px 24px !important;
+  background: rgba(108, 99, 255, 0.06) !important;
   border-radius: 16px !important;
-  border: 1px solid rgba(108, 99, 255, 0.15) !important;
+  border: 1px solid rgba(108, 99, 255, 0.2) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: default !important;
+  animation: ffStreakGlow 3s ease-in-out infinite !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Subtle background shimmer */
+.ff-streak-display::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 200% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent 40%, rgba(108, 99, 255, 0.06) 50%, transparent 60%) !important;
+  animation: ffStreakShimmer 4s ease-in-out infinite !important;
+  pointer-events: none !important;
+}
+
+@keyframes ffStreakShimmer {
+  0% {
+    transform: translateX(-30%);
+  }
+
+  100% {
+    transform: translateX(30%);
+  }
+}
+
+@keyframes ffStreakGlow {
+
+  0%,
+  100% {
+    border-color: rgba(108, 99, 255, 0.2);
+    box-shadow: 0 0 0 rgba(108, 99, 255, 0);
+  }
+
+  50% {
+    border-color: rgba(108, 99, 255, 0.4);
+    box-shadow: 0 0 24px rgba(108, 99, 255, 0.1);
+  }
+}
+
+.ff-streak-display:hover {
+  background: rgba(108, 99, 255, 0.12) !important;
+  border-color: rgba(108, 99, 255, 0.5) !important;
+  box-shadow: 0 6px 32px rgba(108, 99, 255, 0.25) !important;
+  transform: translateY(-3px) scale(1.02) !important;
+  animation: none !important;
 }
 
 .ff-streak-label {
-  font-size: 0.8rem !important;
-  font-weight: 600 !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
-  color: #6C63FF !important;
+  letter-spacing: 0.12em !important;
+  color: #8b83ff !important;
+  transition: color 0.3s ease !important;
+  order: -1 !important;
+}
+
+.ff-streak-display:hover .ff-streak-label {
+  color: #a9a3ff !important;
 }
 
 .ff-streak-value {
-  font-size: 2.4rem !important;
+  font-size: 2.6rem !important;
   font-weight: 900 !important;
   color: #f0f0f5 !important;
   line-height: 1 !important;
+  background: linear-gradient(135deg, #f0f0f5, #c4c4da) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  transition: transform 0.3s ease !important;
+}
+
+.ff-streak-display:hover .ff-streak-value {
+  transform: scale(1.12) !important;
 }
 
 .ff-streak-unit {
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
   font-weight: 500 !important;
-  color: #8b8ba3 !important;
+  color: #6b6b88 !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* ——— Divider between streak and buttons ——— */
+.ff-actions::before {
+  content: '' !important;
+  display: block !important;
+  width: 50% !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.3), rgba(255, 101, 132, 0.3), transparent) !important;
+  margin-bottom: 8px !important;
 }
 
 /* ==========================================
@@ -210,6 +292,7 @@
   flex-direction: column !important;
   align-items: center !important;
   gap: 16px !important;
+  margin-top: 32px !important;
   margin-bottom: 28px !important;
 }
 
