@@ -77,9 +77,51 @@
 .ff-overlay-backdrop {
   position: absolute !important;
   inset: 0 !important;
-  background: rgba(5, 5, 12, 0.97) !important;
+  background: radial-gradient(ellipse at 30% 20%, rgba(108, 99, 255, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(255, 101, 132, 0.06) 0%, transparent 50%),
+              rgba(5, 5, 12, 0.97) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
+  overflow: hidden !important;
+}
+
+/* Floating ambient particles */
+.ff-overlay-backdrop::before,
+.ff-overlay-backdrop::after {
+  content: '' !important;
+  position: absolute !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+  filter: blur(40px) !important;
+}
+
+.ff-overlay-backdrop::before {
+  width: 300px !important;
+  height: 300px !important;
+  background: rgba(108, 99, 255, 0.12) !important;
+  top: 10% !important;
+  left: 15% !important;
+  animation: ffFloat1 8s ease-in-out infinite !important;
+}
+
+.ff-overlay-backdrop::after {
+  width: 250px !important;
+  height: 250px !important;
+  background: rgba(255, 101, 132, 0.08) !important;
+  bottom: 15% !important;
+  right: 10% !important;
+  animation: ffFloat2 10s ease-in-out infinite !important;
+}
+
+@keyframes ffFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+@keyframes ffFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, -40px) scale(1.15); }
 }
 
 /* ——— Main Content Panel ——— */
@@ -93,15 +135,39 @@
   align-items: center;
   text-align: center !important;
   padding: 52px 44px !important;
-  background: rgba(18, 18, 28, 0.85) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: linear-gradient(135deg, rgba(18, 18, 28, 0.9), rgba(25, 20, 40, 0.85)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 28px !important;
   box-shadow:
     0 0 80px rgba(108, 99, 255, 0.15),
-    0 24px 64px rgba(0, 0, 0, 0.5) !important;
-  animation: ffSlideUp 0.5s ease-out 0.1s both !important;
+    0 24px 64px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  animation: ffSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both !important;
   max-height: 90vh !important;
   overflow-y: auto !important;
+}
+
+/* Animated gradient border glow */
+.ff-overlay-content::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: -1px !important;
+  border-radius: 28px !important;
+  padding: 1px !important;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.3), rgba(255, 101, 132, 0.2), rgba(78, 205, 196, 0.2), rgba(108, 99, 255, 0.3)) !important;
+  background-size: 300% 300% !important;
+  animation: ffBorderShift 6s ease-in-out infinite !important;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+  -webkit-mask-composite: xor !important;
+  mask-composite: exclude !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+@keyframes ffBorderShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 @keyframes ffSlideUp {
@@ -120,21 +186,21 @@
 .ff-shield-icon {
   margin-bottom: 28px !important;
   display: inline-block !important;
-  animation: ffShieldPulse 2s ease-in-out infinite !important;
+  animation: ffShieldPulse 2s ease-in-out infinite, ffShieldFloat 4s ease-in-out infinite !important;
 }
 
 @keyframes ffShieldPulse {
-
-  0%,
-  100% {
+  0%, 100% {
     filter: drop-shadow(0 0 16px rgba(108, 99, 255, 0.5));
-    transform: scale(1);
   }
-
   50% {
-    filter: drop-shadow(0 0 28px rgba(255, 101, 132, 0.6));
-    transform: scale(1.06);
+    filter: drop-shadow(0 0 32px rgba(255, 101, 132, 0.7));
   }
+}
+
+@keyframes ffShieldFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.04); }
 }
 
 /* ——— Typography ——— */
@@ -143,24 +209,18 @@
   font-weight: 900 !important;
   letter-spacing: -0.03em !important;
   margin-bottom: 18px !important;
-  background: linear-gradient(135deg, #FF6584, #6C63FF) !important;
+  background: linear-gradient(135deg, #FF6584, #b06cff, #6C63FF) !important;
+  background-size: 200% 200% !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   line-height: 1.25 !important;
-  animation: ffTitleGlow 3s ease-in-out infinite !important;
+  animation: ffTitleShift 4s ease-in-out infinite !important;
 }
 
-@keyframes ffTitleGlow {
-
-  0%,
-  100% {
-    filter: brightness(1);
-  }
-
-  50% {
-    filter: brightness(1.2);
-  }
+@keyframes ffTitleShift {
+  0%, 100% { background-position: 0% 50%; filter: brightness(1); }
+  50% { background-position: 100% 50%; filter: brightness(1.15); }
 }
 
 .ff-message {
@@ -169,6 +229,12 @@
   color: #c4c4da !important;
   margin-bottom: 8px !important;
   font-weight: 500 !important;
+  animation: ffFadeInUp 0.6s ease-out 0.4s both !important;
+}
+
+@keyframes ffFadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ——— Streak Display ——— */
@@ -187,7 +253,7 @@
   border: 1px solid rgba(108, 99, 255, 0.2) !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   cursor: default !important;
-  animation: ffStreakGlow 3s ease-in-out infinite !important;
+  animation: ffStreakGlow 3s ease-in-out infinite, ffFadeInUp 0.6s ease-out 0.5s both !important;
   position: relative !important;
   overflow: hidden !important;
 }
@@ -294,6 +360,7 @@
   gap: 16px !important;
   margin-top: 32px !important;
   margin-bottom: 28px !important;
+  animation: ffFadeInUp 0.6s ease-out 0.6s both !important;
 }
 
 .ff-btn {
@@ -423,6 +490,12 @@
   font-size: 0.75rem !important;
   color: #55556a !important;
   letter-spacing: 0.04em !important;
+  animation: ffFadeInUp 0.6s ease-out 0.8s both !important;
+  transition: color 0.3s ease !important;
+}
+
+.ff-footer-text:hover {
+  color: #8b8ba3 !important;
 }
 
 /* ==========================================
@@ -459,6 +532,12 @@
   margin-bottom: 32px !important;
   width: 140px !important;
   height: 140px !important;
+  animation: ffRingBreath 3s ease-in-out infinite !important;
+}
+
+@keyframes ffRingBreath {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(108, 99, 255, 0.2)); }
+  50% { filter: drop-shadow(0 0 20px rgba(255, 101, 132, 0.35)); }
 }
 
 .ff-countdown-ring svg {
